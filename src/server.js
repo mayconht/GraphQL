@@ -8,7 +8,8 @@ import { ApolloServer, gql } from 'apollo-server';
 const server = new ApolloServer({
     typeDefs: gql` 
     type Query {
-        user: User
+        user: User,
+        users: [User]
     }
     type User {
         id: ID!
@@ -26,6 +27,20 @@ const server = new ApolloServer({
                     email: 'mdss@mdss.com',
                     age: 28,
                 }
+            },
+            users: () => {
+                return [{
+                    id: '1',
+                    name: 'mdss',
+                    email: 'mdss@mdss.com',
+                    age: 28,
+                },
+                {
+                    id: '2',
+                    name: 'mdss2',
+                    email: 'mdss2@mdss.com',
+                    age: 29,
+                }]
             }
         },
     },
