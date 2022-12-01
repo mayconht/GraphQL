@@ -3,11 +3,14 @@ import { ApolloServer, gql } from 'apollo-server';
 
 // template literal ``  
 //type query defines what data we can get from the server
+//Scalar(single value) Data Types: String, Int, Float, Boolean, ID
+// ! means required, not null
 const server = new ApolloServer({
     typeDefs: gql` 
     type Query {
-        hello: String,
-        name: String,
+        hello: String!
+        name: String!
+        arrayString: [String!]!
 
     }`,
     resolvers: {
@@ -15,6 +18,12 @@ const server = new ApolloServer({
             hello: () => {
                 return 'Hello world!';
             },
+            name: () => {
+                return "Maycon's code!";
+            },
+            arrayString: () => {
+                return ['Hello', 'World'];
+            }
         },
     },
 });
