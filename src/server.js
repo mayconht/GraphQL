@@ -9,8 +9,17 @@ const server = new ApolloServer({
         hello: String,
         name: String,
 
-    }`
+    }`,
+    resolvers: {
+        Query: {
+            hello: () => {
+                return 'Hello world!';
+            },
+        },
+    },
 });
+
+
 
 server.listen(4000).then(({ url }) => {
     console.log(`Server ready at ${url}`);
