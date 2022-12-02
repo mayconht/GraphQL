@@ -12,5 +12,10 @@ export const postResolvers = {
   Query: {
     post,
     posts,
+  },
+  Post: { 
+    unixTimestamp:() => {
+      return new Date().getTime();
+    }
   }
 };
