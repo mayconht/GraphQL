@@ -14,4 +14,8 @@ export const userTypeDefs = gql`
         indexRef: Int,
         createdAt: String,
     }
+
+    extend type Mutation {
+        createUser(Id: ID!): User!
+    }
 `;

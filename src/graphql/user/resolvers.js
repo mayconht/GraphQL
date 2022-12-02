@@ -8,11 +8,17 @@ const users = async (_, __, { getUsers }) => {
     return resp.json();
 }
 
-
+const createUser = async (_, { input }, { createUser }) => {
+    const resp = await createUser(input);
+    return resp.json();
+}
 
 export const userResolvers = {
     Query: {
         user,
         users,
+    }, 
+    Mutation : {
+        createUser
     }
 };
