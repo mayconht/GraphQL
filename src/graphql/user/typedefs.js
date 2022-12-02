@@ -6,6 +6,13 @@ export const userTypeDefs = gql`
         users: [User]
     }
 
+    input UserInput {
+        name: String!
+        email: String!
+        userName: String!
+    }
+
+
     type User{
         id: ID!,
         firstName: String,
@@ -16,6 +23,7 @@ export const userTypeDefs = gql`
     }
 
     extend type Mutation {
-        createUser(Id: ID!): User!
+        createUser(input: UserInput): User
+        updateUser(id: ID!, input: UserInput): User
     }
 `;

@@ -9,8 +9,10 @@ const users = async (_, __, { getUsers }) => {
 }
 
 const createUser = async (_, { input }, { createUser }) => {
-    const resp = await createUser(input);
-    return resp.json();
+    console.log('creating an user: ' + input);
+    // const resp = await createUser(input);
+
+    return null;
 }
 
 export const userResolvers = {
