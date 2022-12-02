@@ -1,5 +1,6 @@
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
 import { typeDefs, resolvers } from './graphql/schema';
+import fetch  from 'node-fetch';
 
 
 
@@ -8,9 +9,13 @@ import { typeDefs, resolvers } from './graphql/schema';
 //Scalar(single value) Data Types: String, Int, Float, Boolean, ID
 // ! means required, not null
 const server = new ApolloServer({
-    typeDefs: typeDefs,
-    resolvers: resolvers
-
+    typeDefs,
+    resolvers,
+    context: () => {
+        return {
+            fetch,
+        };
+    },
 });
 
 
