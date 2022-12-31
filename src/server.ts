@@ -1,5 +1,7 @@
+import "dotenv/config";
 import { ApolloServer } from 'apollo-server';
 import { typeDefs, resolvers } from './schema';
+import  DatabaseBootstrap from './database';
 
 
 // template literal ``  
@@ -13,5 +15,6 @@ const server = new ApolloServer({
 });
 
 server.listen(4000).then(({ url }: any) => {
+    new DatabaseBootstrap().bootstrap();
     console.log(`Server ready at ${url}`);
 });
