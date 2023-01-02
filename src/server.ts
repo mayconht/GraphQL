@@ -1,20 +1,18 @@
 import "dotenv/config";
 import { ApolloServer } from 'apollo-server';
-import { typeDefs, resolvers } from './schema';
-import  DatabaseBootstrap from './database';
+import schema from "./schema";
+import DatabaseBootstrap from './database';
 
+async function bootstrap() {
+    const server = new ApolloServer({ schema: await schema });
+    return server;
+}
 
-// template literal ``  
-//type query defines what data we can get from the server
-//Scalar(single value) Data Types: String, Int, Float, Boolean, ID
-// ! means required, not null
-const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-
+bootstrap().then((server: ApolloServer) => {
+    server.listen(4000).then(({ url }: any) => {
+        new DatabaseBootstrap().bootstrap();
+        console.log(`Server ready at ${url}`);
+    });
 });
 
-server.listen(4000).then(({ url }: any) => {
-    new DatabaseBootstrap().bootstrap();
-    console.log(`Server ready at ${url}`);
-});
+

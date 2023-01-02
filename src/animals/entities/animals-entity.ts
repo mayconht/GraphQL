@@ -1,18 +1,24 @@
-import { field, ObjectType, ID } from 'type-graphql';
+import { Field, ObjectType, ID } from 'type-graphql';
 import { prop as Property, getModelForClass } from '@typegoose/typegoose';
 
 @ObjectType({ description: 'The Animal model' })
 export class Animal {
-    @field(() => ID)
-    readonly id: string;
+    @Field(() => ID)
+    readonly id: string = "";
 
     @Property({required: true})
-    @field()
-    animal: string;
+    @Field()
+    animal: string = "";
 
     @Property({required: true})
-    @field()
-    emoji: string;
+    @Field()
+    emoji: string = "";
+
+    Animal(animal: string, emoji: string){
+        this.animal = animal;
+        this.emoji = emoji;
+    }
+
 }
 
 export const AnimalModel = getModelForClass(Animal);

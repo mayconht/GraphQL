@@ -1,26 +1,9 @@
-import { gql } from 'apollo-server-express';
-import {typeDefs as animalTypeDefs, resolvers as animalResolvers} from './animals';
+import { buildSchema } from "type-graphql";
+import path from 'path';
 
+const schema = buildSchema({
+    resolvers: [path.join(__dirname, './animals', `**/*-resolver.*s`)],
+    validate: false,
+});
 
-
-export const rootTypeDefs = gql`
-    type Query {
-        _empty: Boolean
-    }
-    type Mutation {
-        _empty: Boolean
-    }
-   `;
-
-const rootResolvers = {
-    Query: {
-        _empty: () => true
-    },
-
-    Mutation: {
-        _empty: () => true
-    }
-};
-
-export const typeDefs = [rootTypeDefs, animalTypeDefs];
-export const resolvers = [rootResolvers, animalResolvers];
+export default schema;
