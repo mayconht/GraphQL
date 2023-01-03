@@ -35,7 +35,7 @@ const Query = objectType({
             },
         })
     },
-})
+});
 
 const Mutation = objectType({
     name: 'Mutation',
@@ -98,7 +98,7 @@ const Mutation = objectType({
             },
         })
     },
-})
+});
 
 const Animal = objectType({
     name: 'Animal',
@@ -111,7 +111,7 @@ const Animal = objectType({
         t.nonNull.field('createdAt', { type: 'DateTime' })
         t.nonNull.field('updatedAt', { type: 'DateTime' })
     },
-})
+});
 
 export const schema = makeSchema({
     types: [Query, Mutation, Animal, DateTime],
@@ -131,26 +131,4 @@ export const schema = makeSchema({
             },
         ],
     },
-})
-
-
-
-
-
-            
- 
-
-
-
-
-
-
-// import { buildSchema } from "type-graphql";
-// import path from 'path';
-
-// const schema = buildSchema({
-//     resolvers: [path.join(__dirname, './animals', `**/*-resolver.*s`)],
-//     validate: false,
-// });
-
-// export default schema;
+});
