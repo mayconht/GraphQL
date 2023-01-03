@@ -1,18 +1,12 @@
-import "dotenv/config";
 import { ApolloServer } from 'apollo-server';
-import schema from "./schema";
-import DatabaseBootstrap from './database';
+import {schema} from "./schema";
+import {context} from "./context";
 
-async function bootstrap() {
-    const server = new ApolloServer({ schema: await schema });
-    return server;
-}
+const server = new ApolloServer({ schema: schema, context: context });
 
-bootstrap().then((server: ApolloServer) => {
-    server.listen(4000).then(({ url }: any) => {
-        new DatabaseBootstrap().bootstrap();
+
+server.listen(4000).then(async ({ url }: any) => {
         console.log(`Server ready at ${url}`);
-    });
 });
 
 
